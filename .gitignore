@@ -1,0 +1,9 @@
+.vscode/
+.python-version
+venv/
+__pycache__/
+.DS_Store
+*.sqlite3
+media/
+*.pyc
+*.db

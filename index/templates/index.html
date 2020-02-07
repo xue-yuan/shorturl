@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>縮網址</title>{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'static/css/index.css' %}">{% endblock css %}
+{% block js %}<script src="{% static 'assets/js/index.js' %}"></script>{% endblock js %}
+
+{% block content %}
+{% comment %} 
+TODO: 
+add Session, dont appear the fucking resend alert
+{% endcomment %}
+<div class="my-5 upper-block">
+    <form id="form" action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <h1 class="title text-center mb-5">Shorter <span class="badge badge-secondary">beta</span></h1>
+        <div class="row justify-content-center">
+            <div class="input-group input-group mb-4 col-xl-6 col-lg-6">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" name="url" value="" id="id_url" class="form-control no-border" aria-label="Url" aria-describedby="basic-addon1" maxlength="200" placeholder="Try 'google.com'" required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Shorten</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% if submitted_form.errors %}
+{% endif %}
+
+<div class="lower-block" id="block">
+	<div class=" animated bounceIn">
+		<h3 class="title text-center text-success">Success!<span class="badge badge-secondary"></span></h3>
+	</div>
+
+	<div class=" animated bounceIn">
+		<div class="hidden-block input-group input-group mb-4 offset-xl-3 offset-lg-3 col-xl-6 col-lg-6">
+			<input type="text" name="short_url" value="{{short_url}}" id="id_short_url" class="shadow form-control alert alert-success" aria-label="Short_url" aria-describedby="basic-addon1" readonly>
+			<div class="input-group-prepend shadow">
+				<button class="btn btn-outline-success" id="copy" data-toggle="tooltip" data-placement="top" data-original-title="Copy to Clipboard"><i class="far fa-clone"></i></button>
+			</div>    
+			<div class="input-group-prepend">
+				<a href="#" class="btn btn-success shadow">自訂</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="history" class="history container">
+	<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+		<div class="toast-header">
+			<img src="..." class="rounded mr-2" alt="...">
+			<strong class="mr-auto">Bootstrap</strong>
+			<small>11 mins ago</small>
+			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="toast-body">
+			Hello, world! This is a toast message.
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock content %}
